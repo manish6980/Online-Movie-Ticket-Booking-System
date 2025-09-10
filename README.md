@@ -14,15 +14,71 @@ This project is a **Database Management System (DBMS)** application designed for
   - Primary & Foreign Keys
   - Complex SQL Joins and Queries
     
+
 ## 📌 Database Tables
 
-| Table Name   | Purpose/Description                  |
-|--------------|--------------------------------------|
-| Movies       | Stores details of movies             |
-| Theatres     | Contains theatre and screen details  |
-| Customers    | Maintains customer information       |
-| Bookings     | Tracks reservations made by users    |
-| Payments     | Handles payment information          |
+| Table Name       | Purpose / Description                                                                              |
+|------------------|----------------------------------------------------------------------------------------------------|
+| movie            | Stores information about movies such as name, rating, and release date.                            |
+| theatre          | Contains details of theatres, including screen type, audio type, ticket price, and location.       |
+| specifications   | Holds additional attributes of movies such as language, subtitles, category, budget, and director. |
+| booking          | Keeps track of ticket bookings made by customers for different theatres.                           |
+| customer         | Stores customer details and links them to their respective bookings.                               |
+
+
+## Database Tables  
+
+### 1. **Movie**
+| Column Name   | Data Type       | Constraints          |
+|---------------|----------------|-----------------------|
+| movie_name    | VARCHAR2(20)   | NOT NULL              |
+| movie_id      | NUMBER         | PRIMARY KEY, NOT NULL |
+| rating        | NUMBER         |                       |
+| release_date  | DATE           | NOT NULL              |
+
+
+### 2. **Theatre**
+| Column Name   | Data Type       | Constraints                  |
+|---------------|----------------|-------------------------------|
+| movie_id      | NUMBER         | FOREIGN KEY → movie(movie_id) |
+| theatre_name  | VARCHAR2(20)   |                               |
+| theatre_id    | NUMBER         | PRIMARY KEY, NOT NULL         |
+| screen_type   | VARCHAR2(20)   | NOT NULL                      |
+| audio_type    | VARCHAR2(20)   |                               |
+| ticket_price  | NUMBER         | NOT NULL                      |
+| location      | VARCHAR2(20)   |                               |
+
+
+### 3. **Specifications**
+| Column Name   | Data Type       | Constraints                  |
+|---------------|----------------|-------------------------------|
+| movie_id      | NUMBER         | FOREIGN KEY → movie(movie_id) |
+| language      | VARCHAR2(20)   |                               |
+| subtitles     | VARCHAR2(20)   |                               |
+| category      | VARCHAR2(20)   |                               |
+| budget        | NUMBER         |                               |
+| director      | VARCHAR2(20)   |                               |
+
+
+### 4. **Booking**
+| Column Name   | Data Type      | Constraints                       |
+|---------------|----------------|-----------------------------------|
+| theatre_id    | NUMBER         | FOREIGN KEY → theatre(theatre_id) |
+| booking_id    | NUMBER         | NOT NULL                          |
+| upi_id        | VARCHAR2(20)   |                                   | 
+| email         | VARCHAR2(50)   |                                   |
+| phone_number  | NUMBER         |                                   |
+
+
+### 5. **Customer**
+| Column Name    | Data Type       | Constraints                      |
+|----------------|----------------|-----------------------------------|
+| booking_id     | NUMBER         | FOREIGN KEY → booking(booking_id) |
+| customer_id    | NUMBER         | PRIMARY KEY, NOT NULL             |
+| customer_name  | VARCHAR2(20)   |                                   |
+| age            | NUMBER         | NOT NULL                          |
+| gender         | VARCHAR2(20)   | NOT NULL                          |
+
 
 ##  Key Features
 
